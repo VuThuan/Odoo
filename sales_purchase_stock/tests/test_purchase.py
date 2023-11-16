@@ -1,7 +1,6 @@
-from odoo.tests.common import TransactionCase
+from odoo.tests import TransactionCase
 
 
-class TestPurchaseOrders(TransactionCase):
-    def test_create(self):
-
-        self.assertEqual(1, 1)
+class TestPurchase(TransactionCase):
+    def test_action_rfq_send(self):
+        self.assertEqual('python'.upper(), 'PYTHON')
