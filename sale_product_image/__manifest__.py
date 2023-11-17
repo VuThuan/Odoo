@@ -31,6 +31,7 @@
     'maintainer': 'Cybrosys Techno Solutions',
     "depends": [
         'sale_management',
+        'purchase'
     ],
     "data": [
         'views/sale_order_line_image.xml',

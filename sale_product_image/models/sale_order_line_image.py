@@ -27,3 +27,10 @@ class SaleOrderLine(models.Model):
 
     order_line_image = fields.Binary(string="Image",
                                      related="product_id.image_1920")
+
+
+class PurchaseOrderLine(models.Model):
+    _inherit = 'purchase.order.line'
+
+    order_line_image = fields.Binary(string="Image",
+                                     related="product_id.image_1920")
