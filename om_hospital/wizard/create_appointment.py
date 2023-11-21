@@ -16,14 +16,21 @@ class CreateAppointmentWizard(models.TransientModel):
 
     date_appointment = fields.Date(string='Date', required=False)
     patient_id = fields.Many2one('hospital.patient', string="Patient", required=True)
+    age = fields.Integer(string='Age', related='patient_id.age', tracking=True, store=True)
+    gender = fields.Selection([
+        ('male', 'Male'),
+        ('female', 'Female'),
+        ('other', 'Other'),
+    ], related='patient_id.gender', default='male', store=True)
     doctor_id = fields.Many2one('hospital.doctor', string="Doctor", required=True)
-    note = fields.Text(string='Description')
+    note = fields.Text(string='Other Information')
 
     def action_create_appointment(self):
         vals = {
             'patient_id': self.patient_id.id,
             'doctor_id': self.doctor_id.id,
             'note': self.note,
+            'gender': self.gender,
             'date_appointment': self.date_appointment
         }
         appointment_rec = self.env['hospital.appointment'].create(vals)

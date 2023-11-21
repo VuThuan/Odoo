@@ -9,8 +9,10 @@
                 <group>
                     <field name="date_appointment"/>
                     <field name="patient_id"/>
-                    <field name="note"/>
+                    <field name="age"/>
+                    <field name="gender"/>
                     <field name="doctor_id"/>
+                    <field name="note"/>
                 </group>
                 <footer>
                     <button name="action_create_appointment" type="object" string="Create" class="btn-primary"/>
