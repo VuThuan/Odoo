@@ -11,10 +11,9 @@ class StockPicking(models.Model):
         if self.origin:
             sale_order = self.env['sale.order'].sudo().search([('name', '=', self.origin)], limit=1)
             if sale_order and sale_order.picking_ids.filtered(lambda p: p.state == 'assigned'):
-                purchase_order = self.env['purchase.order'].sudo().search([('name', '=', sale_order.client_order_ref)], limit=1)
+                purchase_order = sale_order.purchase_order_id
                 if purchase_order:
-                    purchase_order_picking = purchase_order.picking_ids.filtered(
-                        lambda p: p.state != ['assigned', 'done'])
+                    purchase_order_picking = purchase_order.picking_ids.filtered(lambda p: p.state != ['assigned', 'done'])
                     if purchase_order_picking:
                         purchase_order_picking.write({'state': 'assigned'})
 
@@ -24,11 +23,9 @@ class StockPicking(models.Model):
         result = super(StockPicking, self).button_validate()
 
         if self.origin:
-            purchase_order = self.env['purchase.order'].sudo().search([('name', '=', self.origin)], limit=1)
-            if purchase_order and purchase_order.picking_ids.filtered(lambda p: p.state == 'done'):
-                sale_order = self.env['sale.order'].sudo().search([('purchase_order_id', '=', purchase_order.id)], limit=1)
-                if sale_order:
-                    sale_order_picking = sale_order.picking_ids.filtered(lambda p: p.state != ['assigned', 'done'])
-                    if sale_order_picking:
-                        sale_order_picking.write({'state': 'done'})
+            sale_order = self.env['sale.order'].sudo().search([('name', '=', self.origin)], limit=1)
+            if sale_order:
+                sale_order_picking = sale_order.picking_ids.filtered(lambda p: p.state != ['assigned', 'done'])
+                if sale_order_picking:
+                    sale_order_picking.write({'state': 'done'})
         return result

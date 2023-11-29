@@ -7,9 +7,7 @@
     'category': 'Uncategorized',
     'website': 'https://github.com/vuThuan',
     'depends': ['base', 'sale', 'purchase', 'stock', 'product'],
-    'data': [
-        'security/ir.model.access.csv'
-    ],
+    'data': [],
     'installable': True,
     'application': True,
 }
