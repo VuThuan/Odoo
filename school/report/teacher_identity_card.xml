@@ -18,8 +18,7 @@
                             </tr>
                             <tr>
                                 <td align="top">
-                                    <img t-if="teacher.avatar_128"
-                                        t-att-src="'data:image/png;base64,%s' % to_text(teacher.avatar_128)"/>
+                                    <img t-att-src="image_data_uri(teacher.avatar_128)" style="max-height: 4cm; max-width: 8cm;"/>
                                 </td>
                                 <td align="left">
                                     <table width="100%">

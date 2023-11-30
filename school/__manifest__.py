@@ -26,6 +26,7 @@
         "report/report_view.xml",
         "report/identity_card.xml",
         "report/teacher_identity_card.xml",
+        "report/parent_identity_card.xml",
     ],
     "demo": ["demo/school_demo.xml"],
     "assets": {
